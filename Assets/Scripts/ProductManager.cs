@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Product : MonoBehaviour
+public class ProductManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
