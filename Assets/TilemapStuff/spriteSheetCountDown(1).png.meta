@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 20c6f4cb75d644fdbaba4fd560031225
+guid: fd877f719fe89488bbbfd8574a6e513e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -501908060280423708
-    second: spriteSheetCountDown_0
+      213: -2850471669418412168
+    second: spriteSheetCountDown(1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spriteSheetCountDown_0
+      name: spriteSheetCountDown(1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,14 +128,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4ea7415474dd809f0800000000000000
-      internalID: -501908060280423708
+      spriteID: 877300e7e171178d0800000000000000
+      internalID: -2850471669418412168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spriteSheetCountDown_1
+      name: spriteSheetCountDown(1)_1
       rect:
         serializedVersion: 2
         x: 128
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95701b339dd944a8f925fb0452a35ad8
-      internalID: -2138672462
+      spriteID: a93121e23abd2430b871d3bb1a38f847
+      internalID: 749008799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spriteSheetCountDown_2
+      name: spriteSheetCountDown(1)_2
       rect:
         serializedVersion: 2
         x: 256
@@ -172,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ca7fc3cab38d4d2db73231ee0e47ce5
-      internalID: 1944069690
+      spriteID: 4507af52bf51f46afbe8d66370c2c76d
+      internalID: 332631579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spriteSheetCountDown_3
+      name: spriteSheetCountDown(1)_3
       rect:
         serializedVersion: 2
         x: 384
@@ -194,8 +194,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0669257f4f871406b954f90cd89ddee1
-      internalID: 1162580766
+      spriteID: ac9df349ab93f43fca503a1917e307df
+      internalID: 1870833877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spriteSheetCountDown(1)_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1152
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67de1abad758646e6abf8a2a8f0b1073
+      internalID: 670721781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spriteSheetCountDown(1)_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1152
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6e5b5a1743f54635b7779fab178e321
+      internalID: 988326530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spriteSheetCountDown(1)_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1152
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b1b7dc879ed4b51928dcd49a30817b
+      internalID: 1596391762
       vertices: []
       indices: 
       edges: []
@@ -204,7 +270,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d3daa4cebe3c64a14abb261d7bd7c5db
+    spriteID: 4e83932b94fea404d94489c05772b650
     internalID: 0
     vertices: []
     indices: 
@@ -216,10 +282,13 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      spriteSheetCountDown_0: -501908060280423708
-      spriteSheetCountDown_1: -2138672462
-      spriteSheetCountDown_2: 1944069690
-      spriteSheetCountDown_3: 1162580766
+      spriteSheetCountDown(1)_0: -2850471669418412168
+      spriteSheetCountDown(1)_1: 749008799
+      spriteSheetCountDown(1)_2: 332631579
+      spriteSheetCountDown(1)_3: 1870833877
+      spriteSheetCountDown(1)_4: 670721781
+      spriteSheetCountDown(1)_5: 988326530
+      spriteSheetCountDown(1)_6: 1596391762
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
