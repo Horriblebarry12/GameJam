@@ -2,11 +2,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
 	[SerializeField] InputActionReference _MovementAction;
 	[SerializeField] InputActionReference _InteractionAction;
-	[SerializeField] LayerMask _RaycastLayerMask;
+	[SerializeField] LayerMask _ProductRaycastLayer;
+	[SerializeField] LayerMask _OutputTileRaycastLayer;
 	[SerializeField] float _Acceleration;
 	[SerializeField] float _Speed;
 	[SerializeField] float _InteractionRange;
@@ -14,11 +16,15 @@ public class PlayerMovement : MonoBehaviour
 	private Vector2 _LastMovementVector = Vector2.zero;
 	private SpringJoint2D _SpringJoint;
 
+	private Rigidbody2D _Rigidbody;
+
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
 		_MovementAction.action.Enable();
 		_InteractionAction.action.Enable();
+
+		_Rigidbody = GetComponent<Rigidbody2D>();
 	}
 
 	// Update is called once per frame
@@ -27,19 +33,33 @@ public class PlayerMovement : MonoBehaviour
 		Vector2 movementVector = _MovementAction.action.ReadValue<Vector2>() * _Speed;
 
 		Vector2 finalMovementVector = Vector2.MoveTowards(_LastMovementVector, movementVector, _Acceleration * Time.deltaTime);
-		transform.position = transform.position +  (Vector3)(finalMovementVector * Time.deltaTime);
+		_Rigidbody.linearVelocity = (finalMovementVector);
 		_LastMovementVector = finalMovementVector;
 		if (finalMovementVector.magnitude > 0.1 && Vector3.Distance(finalMovementVector, transform.up) > 0.1)
 			transform.rotation = Quaternion.LookRotation(Vector3.forward, finalMovementVector);
 
 		if (_InteractionAction.action.ReadValue<float>() >= 0.5f) 
 		{
-			RaycastHit2D hit = Physics2D.BoxCast(transform.position + (transform.up/2), Vector2.one * 0.5f, transform.eulerAngles.z, transform.up, _InteractionRange, _RaycastLayerMask);
+			RaycastHit2D hit = Physics2D.BoxCast(transform.position + (transform.up/2), Vector2.one * 0.5f, transform.eulerAngles.z, transform.up, _InteractionRange, _ProductRaycastLayer);
 			if (hit.collider != null) 
 			{
 				if (hit.transform.TryGetComponent(out SpringJoint2D spring)) 
 				{
+					if (_SpringJoint != null)
+						_SpringJoint.enabled = false;
 					_SpringJoint = spring;
+					_SpringJoint.enabled = true;
+					//_SpringJoint.GetComponent<Rigidbody2D>().simulated = true;
+				}
+			}
+			else 
+			{
+				hit = Physics2D.BoxCast(transform.position + (transform.up / 2), Vector2.one * 0.5f, transform.eulerAngles.z, transform.up, _InteractionRange, _OutputTileRaycastLayer);
+				if (hit.collider != null && _SpringJoint != null)
+				{
+					_SpringJoint.transform.position = hit.transform.position;
+					_SpringJoint.enabled = false;
+					_SpringJoint.GetComponent<Rigidbody2D>().simulated = false;
 				}
 			}
 		}

@@ -9,9 +9,11 @@ namespace Assets.Scripts
 	{
 		Tilemap[] _Tilemaps = new Tilemap[2];
 
-		List<Vector2> WallTiles;
-		List<Vector2> MashineTiles;
-		List<Vector2> OutputTiles;
+		[SerializeField] GameObject OutputTileGameobject;
+
+		List<Vector2> WallTiles = new List<Vector2>();
+		List<Vector2> MashineTiles = new List<Vector2>();
+		List<Vector2> OutputTiles = new List<Vector2>();
 
 		// Use this for initialization
 		void Start()
@@ -52,6 +54,7 @@ namespace Assets.Scripts
 			else if (name == "DeliveryConveyorSprite") 
 			{
 				OutputTiles.Add(pos);
+				Instantiate(OutputTileGameobject, transform.localToWorldMatrix.MultiplyPoint(pos + Vector2.one/2.0f), Quaternion.identity);
 			}
 		}
 
