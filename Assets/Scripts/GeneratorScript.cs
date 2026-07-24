@@ -7,6 +7,7 @@ public class GeneratorScript : MonoBehaviour
 	//References
 	ProductManager productManager;
 
+<<<<<<< Updated upstream
 	string[] blueprints =
 	{
 		"square(triangle(square,0),0,square(0,triangle(square,0),triangle),semicircle)",
@@ -19,6 +20,20 @@ public class GeneratorScript : MonoBehaviour
 		GenerateProduct(blueprints[0]);
 		test = true;
 	}
+=======
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        productManager = GameObject.FindWithTag("ProductManager").GetComponent<ProductManager>();
+        GenerateProduct(blueprints[0]);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+>>>>>>> Stashed changes
 
 	// Update is called once per frame
 	bool test;

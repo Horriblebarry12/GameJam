@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 //Holds references to all Product-related stuffs and product-related functions
 public class ProductManager : MonoBehaviour
@@ -10,16 +11,86 @@ public class ProductManager : MonoBehaviour
 
     public GameObject productHolderPrefab;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    //first and second should not be null
+    public bool CompareProducts(ProductHolder first, ProductHolder second)
     {
-        
+        List<GameObject> firstComponents = GetComponents(first.transform.GetChild(0).gameObject);
+        List<GameObject> secondComponents = GetComponents(first.transform.GetChild(0).gameObject);
+        if(firstComponents.Count != secondComponents.Count)
+        {
+            return false;
+        }
+        for(int i = 0; i < firstComponents.Count; i++)
+        {
+            if(CompareProductsFromStart(firstComponents[i], secondComponents[0]))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    // Update is called once per frame
-    void Update()
+    //When called by a converter, pass target product first and player's product second
+    public bool CompareProductsFromStart(GameObject first, GameObject second)
     {
+        ProductComponent firstScript = first.GetComponent<ProductComponent>();
+        ProductComponent secondScript = second.GetComponent<ProductComponent>();
         
+        if(firstScript.componentType != secondScript.componentType)
+        {
+            return false;
+        }
+
+        bool matchInAnyCase = false;
+        for(int i = 0; i < firstScript.attachedComponents.Length; i++)
+        {
+            bool matchInThisCase = true;
+            for(int j = 0; j < firstScript.attachedComponents.Length; j++)
+            {
+                GameObject firstAttachment = firstScript.attachedComponents[j];
+                GameObject secondAttachment = secondScript.attachedComponents[(i+j)%firstScript.attachedComponents.Length];
+                //Only one object exists? NO MATCH
+                if(firstAttachment == null && secondAttachment != null)
+                {
+                    matchInThisCase = false;
+                    break;
+                }
+                if(firstAttachment != null && secondAttachment == null)
+                {
+                    matchInThisCase = false;
+                    break;
+                }
+                if(firstAttachment != null && secondAttachment != null)
+                {
+                    if(!CompareProductsFromStart(firstAttachment, secondAttachment))
+                    {
+                        matchInThisCase = false;
+                        break;
+                    }
+                }
+            }
+            if(matchInThisCase)
+            {
+                matchInAnyCase = true;
+                break;
+            }
+        }
+        return matchInAnyCase;
+    }
+
+    private List<GameObject> GetComponents(GameObject currentComponent)
+    {
+        List<GameObject> components = new List<GameObject>();
+        components.Add(currentComponent);
+        GameObject[] attachedComponents = currentComponent.GetComponent<ProductComponent>().attachedComponents;
+        for(int i = 0; i < attachedComponents.Length; i++)
+        {
+            if(attachedComponents[i] != null)
+            {
+                components.AddRange(GetComponents(attachedComponents[i]));
+            }
+        }
+        return components;
     }
 
     //What should the position and rotation and prefab of a new component be at the given slot, given this component's type?

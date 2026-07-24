@@ -7,9 +7,9 @@ public class ProductComponent : MonoBehaviour
     ProductManager productManager;
 
     //"square", "triangle", "semicircle"
-    string componentType;
+    public string componentType;
     //Each object in the array is one slot
-    GameObject[] attachedComponents;
+    public GameObject[] attachedComponents;
 
 
     // Update is called once per frame
