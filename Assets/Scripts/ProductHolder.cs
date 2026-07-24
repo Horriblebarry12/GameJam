@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public class BasicMashine : MonoBehaviour
+public class ProductHolder : MonoBehaviour
 {
+    GameObject topComponent;
+    Vector2 centerOfMassOffset;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
