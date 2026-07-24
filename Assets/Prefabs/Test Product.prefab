@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3267761066899410291}
   - component: {fileID: 8701309505795938411}
   - component: {fileID: 4311680792275887946}
+  - component: {fileID: -3545375707182867624}
   m_Layer: 6
   m_Name: Test Product
   m_TagString: Untagged
@@ -179,3 +180,18 @@ SpringJoint2D:
   m_Distance: 1.25
   m_DampingRatio: 0.4
   m_Frequency: 1
+--- !u!114 &-3545375707182867624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669746837560631942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54f9108b0362441188db6a64dd95ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProductComponent
+  squarePrefab: {fileID: 0}
+  trianglePrefab: {fileID: 0}
+  semicirclePrefab: {fileID: 0}

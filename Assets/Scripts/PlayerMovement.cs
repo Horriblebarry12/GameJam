@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
 					_SpringJoint.transform.position = hit.transform.position;
 					_SpringJoint.enabled = false;
 					_SpringJoint.GetComponent<Rigidbody2D>().simulated = false;
+					hit.transform.GetComponent<OutputConvayor>().Product = _SpringJoint.GetComponent<ProductComponent>();
 				}
 			}
 		}

@@ -1,12 +1,10 @@
 using UnityEngine;
 
-public class ProductManager : MonoBehaviour
+public class ProductHolder : MonoBehaviour
 {
-    //References
-    public GameObject squarePrefab;
-    public GameObject trianglePrefab;
-    public GameObject semicirclePrefab;
-
+    GameObject topComponent;
+    Vector2 centerOfMassOffset;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: 2804806e2b0d5f04ea7539f97d00058d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - OutputTileGameobject: {instanceID: 0}
+  - OutputConvayorTile: {fileID: 11400000, guid: 9324c77dfd4cb436f8a300db88cfdee7, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

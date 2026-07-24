@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ProductComponent : MonoBehaviour
 {
@@ -40,8 +41,8 @@ public class ProductComponent : MonoBehaviour
     }
 
     //New component attached to this one
-    void NewAttachment(int slot, string otherType, GameObject prefab){
-        attachedComponents[slot] = Instantiate(prefab, getPositionAt(slot, componentType), getRotationAt(slot, componentType), transform);
+    void NewAttachment(int slot, string otherType){
+        attachedComponents[slot] = Instantiate(GetPrefab(otherType), GetPositionAt(slot, componentType), GetRotationAt(slot, componentType), transform);
         attachedComponents[slot].GetComponent<ProductComponent>().Initialize(otherType);
         attachedComponents[slot].GetComponent<ProductComponent>().attachedComponents[0] = gameObject;
     }
@@ -53,8 +54,45 @@ public class ProductComponent : MonoBehaviour
         attachedComponents[slot] = null;
     }
 
-    //What should the position and rotation of a new component be at the given slot, given this component's type?
-    Vector3 getPositionAt(int slot, string thisType)
+    //Recursively creates many new attachments according to a string blueprint
+    //Blueprint example: "square(triangle(square,0),0,square(0,triangle(square,0),triangle(0,0)),semicircle)"
+    public void PrintBlueprint(string blueprint)
+    {
+        List<string> blueprints = new List<string>();
+        int parenthesesDepth = 0;
+        int previousCommaPosition = -1;
+        for(int i = 0; i < blueprint.Length; i++)
+        {
+            if(blueprint[i] == '(')
+            {
+                parenthesesDepth++;
+            }
+            else if (blueprint[i] == ')')
+            {
+                parenthesesDepth--;
+            }
+            else if (blueprint[i] == ',' && parenthesesDepth == 0)
+            {
+                blueprints.Add(blueprint.Substring(previousCommaPosition + 1,i));
+                previousCommaPosition = i;
+            }
+        }
+        blueprints.Add(blueprint.Substring(previousCommaPosition + 1,blueprint.Length));
+        for(int i = 0; i < blueprints.Count; i++){
+            //Instantiate
+            if(!blueprints[i].Equals("0")){
+                int slot = (i+1)%attachedComponents.Length;
+                Debug.Log(blueprints[i].Substring(0,blueprints[i].IndexOf('(')));
+                NewAttachment(slot, blueprints[i].Substring(0,blueprints[i].IndexOf('(')));
+                Debug.Log(blueprints[i].Substring(blueprints[i].IndexOf('(') + 1, blueprints[i].IndexOf(')')));
+                attachedComponents[slot].GetComponent<ProductComponent>().PrintBlueprint(blueprints[i].Substring(blueprints[i].IndexOf('(') + 1, blueprints[i].IndexOf(')')));
+            }
+            
+        }
+    }
+
+    //What should the position and rotation and prefab of a new component be at the given slot, given this component's type?
+    Vector3 GetPositionAt(int slot, string thisType)
     {
         Vector3 position = new Vector3();
         switch(thisType){
@@ -81,7 +119,7 @@ public class ProductComponent : MonoBehaviour
         }
         return position;
     }
-    Quaternion getRotationAt(int slot, string thisType)
+    Quaternion GetRotationAt(int slot, string thisType)
     {
         Vector3 rotation = new Vector3();
         switch(thisType){
@@ -107,5 +145,20 @@ public class ProductComponent : MonoBehaviour
                 break;
         }
         return Quaternion.Euler(rotation);
+    }
+
+    GameObject GetPrefab(string otherType)
+    {
+        switch(otherType)
+        {
+            case "square":
+                return squarePrefab;
+            case "triangle":
+                return trianglePrefab;
+            case "semicircle":
+                return semicirclePrefab;
+        }
+        Debug.Log("GetPrefab error: " + otherType);
+        return null;
     }
 }

@@ -1,11 +1,9 @@
 using UnityEngine;
 
-public class ProductManager : MonoBehaviour
+public class GeneratorScript : MonoBehaviour
 {
     //References
-    public GameObject squarePrefab;
-    public GameObject trianglePrefab;
-    public GameObject semicirclePrefab;
+    public ProductManager productManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,5 +15,10 @@ public class ProductManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void GenerateProduct(string blueprint)
+    {
+
     }
 }

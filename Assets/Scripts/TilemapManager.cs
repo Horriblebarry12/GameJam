@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Tilemaps;
-using System.Collections.Generic;
 
 namespace Assets.Scripts
 {
@@ -11,7 +10,8 @@ namespace Assets.Scripts
 
 		[SerializeField] GameObject OutputTileGameobject;
 
-		List<Vector2> WallTiles = new List<Vector2>();
+		[SerializeField] static TileBase OutputConvayorTile;
+
 		List<Vector2> MashineTiles = new List<Vector2>();
 		List<Vector2> OutputTiles = new List<Vector2>();
 
@@ -41,27 +41,23 @@ namespace Assets.Scripts
 			}
 		}
 
-		void FilterTile(string name, Vector2 pos) 
+		void FilterTile(string name, Vector2 pos)
 		{
-			if (name == "WallSprite") 
-			{
-				WallTiles.Add(pos);
-			}
-			else if (name == "MashineSprite") 
+			if (name == "MashineSprite")
 			{
 				MashineTiles.Add(pos);
 			}
-			else if (name == "DeliveryConveyorSprite") 
+			else if (name == OutputConvayorTile.name)
 			{
 				OutputTiles.Add(pos);
-				Instantiate(OutputTileGameobject, transform.localToWorldMatrix.MultiplyPoint(pos + Vector2.one/2.0f), Quaternion.identity);
+				Instantiate(OutputTileGameobject, transform.localToWorldMatrix.MultiplyPoint(pos + Vector2.one / 2.0f), Quaternion.identity);
 			}
 		}
 
 		// Update is called once per frame
 		void Update()
 		{
-			
+
 		}
 	}
 }
