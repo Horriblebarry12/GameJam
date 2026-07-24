@@ -1,10 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
-
-
-public class TestMashine : BasicMashine
+﻿public class TestMashine : BasicMashine
 {
-	protected override ProductComponent CalculateOutputProduct()
+	protected override ProductHolder CalculateOutputProduct()
 	{
 		throw new System.NotImplementedException();
 	}

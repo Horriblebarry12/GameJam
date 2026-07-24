@@ -10,7 +10,7 @@ namespace Assets.Scripts
 
 		[SerializeField] GameObject OutputTileGameobject;
 
-		[SerializeField] static TileBase OutputConvayorTile;
+		[SerializeField] TileBase OutputConvayorTile;
 
 		List<Vector2> MashineTiles = new List<Vector2>();
 		List<Vector2> OutputTiles = new List<Vector2>();

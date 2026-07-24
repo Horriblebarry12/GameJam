@@ -115,6 +115,9 @@ MonoBehaviour:
   _OutputTileRaycastLayer:
     serializedVersion: 2
     m_Bits: 128
+  _MashineInputRaycastLayer:
+    serializedVersion: 2
+    m_Bits: 0
   _Acceleration: 26
   _Speed: 10
   _InteractionRange: 6
@@ -126,14 +129,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3873783087983763563}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_AngularDamping: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
