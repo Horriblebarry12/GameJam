@@ -313,7 +313,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.68, y: 0.79985, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.46, y: 0.46, z: 0.46}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -2565,7 +2565,6 @@ MonoBehaviour:
   squarePrefab: {fileID: 1000044892763278542, guid: 284de715b002d4f1482d42f84df3fbf7, type: 3}
   trianglePrefab: {fileID: 2021833314263225398, guid: e8b5fec7c3f36447d940f9f3bf846e0f, type: 3}
   semicirclePrefab: {fileID: 7125246668777586392, guid: 51c937b45607947e4abb37834698fb5f, type: 3}
-  crossPrefab: {fileID: 6143366685061466372, guid: a020b03ed35754d5ea6062ed8192e698, type: 3}
   productHolderPrefab: {fileID: 8353557762492439678, guid: 2aef4dd0d9a064f5c81329712a9924f7, type: 3}
 --- !u!4 &1952044085
 Transform:

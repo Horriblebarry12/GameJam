@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 					{
 						_SpringJoint.enabled = false;
 						_SpringJoint.GetComponent<Rigidbody2D>().simulated = false;
-						mashine.InputProduct(_SpringJoint.GetComponent<ProductHolder>(), hit.transform.GetComponent<MashineInput>());
+						mashine.InputProduct(_SpringJoint.GetComponent<ProductHolder>()/*, hit.transform.GetComponent<MashineInput>()*/);
 						_SpringJoint = null;
 					}
 				}

@@ -11,26 +11,22 @@ public abstract class BasicMashine : MonoBehaviour
 	[SerializeField] protected float _OutputSpeed;
 	[SerializeField] protected int _NumInputs;
 
-	protected List<ProductHolder> _InputProducts;
-	protected List<MashineInput> _MashineInputs;
+	protected ProductHolder _InputProduct;
+	protected MashineInput _MashineInput;
 
 
-	protected abstract ProductHolder CalculateOutputProduct();
+	//protected abstract ProductHolder CalculateOutputProduct();
 
 	protected virtual void Start()
 	{
-		_InputProducts = new List<ProductHolder>();
-		_MashineInputs = new List<MashineInput>();
-		_MashineInputs.AddRange(GetComponentsInChildren<MashineInput>());
+		_InputProduct = null;
+		_MashineInput = GetComponentInChildren<MashineInput>();
 	}
 
-	public virtual void InputProduct(ProductHolder product, MashineInput mashineInput)
+	public virtual void InputProduct(ProductHolder productHolder)
 	{
-		if (_MashineInputs.Contains(mashineInput))
-		{
-			_InputProducts[mashineInput.InputIndex] = product;
-			StartCoroutine(InputCoroutine(product, mashineInput));
-		}
+		_InputProduct = productHolder;
+		StartCoroutine(InputCoroutine(productHolder, _MashineInput));
 
 	}
 
@@ -45,9 +41,9 @@ public abstract class BasicMashine : MonoBehaviour
 		}
 	}
 
-	protected virtual void OutputProduct(ProductHolder product)
+	protected virtual void OutputProduct(ProductHolder productHolder)
 	{
-		StartCoroutine(OutputCoroutine(product));
+		StartCoroutine(OutputCoroutine(productHolder));
 	}
 
 	IEnumerator OutputCoroutine(ProductHolder outputProduct)

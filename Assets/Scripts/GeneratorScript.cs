@@ -1,18 +1,20 @@
 using UnityEngine;
 
-public class GeneratorScript : MonoBehaviour
+public class GeneratorScript : BasicMashine
 {
-	[SerializeField] Vector2 _OutputPos;
 	[SerializeField] float _OutputCooldown;
 	//References
 	ProductManager _ProductManager;
+
 	float _LastOutputTime;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Start()
+	protected override void Start()
 	{
+		_InputProduct = null;
+		_MashineInput = GetComponentInChildren<MashineInput>();
 		_ProductManager = GameObject.FindWithTag("ProductManager").GetComponent<ProductManager>();
-		GenerateProduct("square(triangle(square,0),0,square(0,triangle(square,0),triangle),semicircle)");
+		Generate();
 	}
 
 	// Update is called once per frame
@@ -31,11 +33,8 @@ public class GeneratorScript : MonoBehaviour
 	{
 		if (_LastOutputTime + _OutputCooldown > Time.time)
 			return;
-		GameObject productHolder = Instantiate(_ProductManager.productHolderPrefab, transform.position + (Vector3)_OutputPos, transform.rotation);
-		string topComponentType = blueprint.Substring(0, blueprint.IndexOf('('));
-		GameObject topComponent = Instantiate(_ProductManager.GetPrefab(topComponentType), productHolder.transform);
-		topComponent.GetComponent<ProductComponent>().Initialize(topComponentType);
-		topComponent.GetComponent<ProductComponent>().PrintBlueprint(blueprint.Substring(blueprint.IndexOf('(') + 1, blueprint.Length - (blueprint.IndexOf('(') + 1) - 1));
+		_ProductManager.GenerateProduct(blueprint, transform.position + (Vector3)_OutputStartPos, transform.rotation, false);
+		//animation
 		_LastOutputTime = Time.time;
 	}
 }

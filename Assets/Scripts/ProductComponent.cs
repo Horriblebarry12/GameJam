@@ -23,14 +23,7 @@ public class ProductComponent : MonoBehaviour
     {
         productManager = GameObject.FindWithTag("ProductManager").GetComponent<ProductManager>();
         componentType = type;
-        switch(type){
-            case "square":
-                attachedComponents = new GameObject[4]; break;
-            case "triangle":
-                attachedComponents = new GameObject[3]; break;
-            case "semicircle":
-                attachedComponents = new GameObject[1]; break;
-        }
+        attachedComponents = new GameObject[productManager.GetNumberOfSides(type)];
     }
 
     //New component attached to this one
@@ -42,6 +35,13 @@ public class ProductComponent : MonoBehaviour
         attachedComponents[slot].GetComponent<ProductComponent>().attachedComponents[0] = gameObject;
     }
 
+    private void NewCross(int slot)
+    {
+        GameObject cross = Instantiate(productManager.GetPrefab("cross"), transform);
+        cross.transform.localPosition = productManager.GetPositionAt(slot, componentType);
+        cross.transform.localRotation = productManager.GetRotationAt(slot, componentType);
+    }
+
     //Delete component attached to this one
     private void DeleteAttachment(int slot)
     {
@@ -50,10 +50,10 @@ public class ProductComponent : MonoBehaviour
     }
 
     //Recursively creates many new attachments according to a string blueprint
-    //Blueprint example: "square(triangle(square,0),0,square(0,triangle(square,0),triangle(0,0)),semicircle)"
-    public void PrintBlueprint(string blueprint)
+    //Blueprint is the string that represents the product.
+    //DrawCross depends on whether this blueprint creates a goal or a real product.
+    public void PrintBlueprint(string blueprint, bool drawCross)
     {
-        Debug.Log("printBlueprint: " + blueprint);
         List<string> blueprints = new List<string>();
         int parenthesesDepth = 0;
         int previousCommaPosition = -1;
@@ -79,15 +79,42 @@ public class ProductComponent : MonoBehaviour
 
         //For each item in blueprints array, initialize component and printBlueprint again, if applicable
         for(int i = 0; i < blueprints.Count; i++){
-            if(!blueprints[i].Equals("0")){
-                int slot = (i+1)%attachedComponents.Length;
+            int slot = (i+1)%attachedComponents.Length;
+            if(blueprints[i].Equals("0")){
+                if(drawCross)
+                {
+                    NewCross(slot);
+                }
+            }
+            else if(blueprints[i].Equals("-1"))
+            {
+                //This component's pointer is set to itself to signal that Compare functions should stop.
+                attachedComponents[slot] = gameObject;
+            }
+            else
+            {
                 if(blueprints[i].IndexOf('(') != -1){
                     NewAttachment(slot, blueprints[i].Substring(0,blueprints[i].IndexOf('(')));
-                    attachedComponents[slot].GetComponent<ProductComponent>().PrintBlueprint(blueprints[i].Substring(blueprints[i].IndexOf('(') + 1, blueprints[i].Length - (blueprints[i].IndexOf('(') + 1) - 1));
+                    attachedComponents[slot].GetComponent<ProductComponent>().PrintBlueprint(blueprints[i].Substring(blueprints[i].IndexOf('(') + 1, blueprints[i].Length - (blueprints[i].IndexOf('(') + 1) - 1), drawCross);
                 }
                 else
                 {
                     NewAttachment(slot, blueprints[i]);
+                    if(drawCross && productManager.GetNumberOfSides(blueprints[i]) > 1)
+                    {
+                        string blueprintWithCrosses = "";
+                        for(int j = 0; j < productManager.GetNumberOfSides(blueprints[i]) - 1; j++)
+                        {
+                            if(j == 0)
+                            {
+                                blueprintWithCrosses += "0";
+                            }
+                            else{
+                                blueprintWithCrosses += ",0";
+                            }
+                        }
+                        attachedComponents[slot].GetComponent<ProductComponent>().PrintBlueprint(blueprintWithCrosses, true);
+                    }
                 }
             }
             
