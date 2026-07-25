@@ -100,15 +100,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8206056468185624472}
-<<<<<<< Updated upstream
   - component: {fileID: -6700561599097472403}
   - component: {fileID: 5635312186349803822}
   m_Layer: 6
-=======
-  - component: {fileID: 3799986499516438759}
-  - component: {fileID: 3937607810179821432}
-  m_Layer: 0
->>>>>>> Stashed changes
   m_Name: Semicircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +123,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9159978604527539494}
-  - {fileID: 5250844680967129264}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6700561599097472403
@@ -144,13 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54f9108b0362441188db6a64dd95ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProductComponent
-<<<<<<< Updated upstream
 --- !u!58 &5635312186349803822
 CircleCollider2D:
-=======
---- !u!60 &3937607810179821432
-PolygonCollider2D:
->>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -181,103 +169,10 @@ PolygonCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-<<<<<<< Updated upstream
   m_CompositeOperation: 1
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
-=======
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.433, y: 0.25}
-      - {x: -0.5, y: 0}
-      - {x: 0.5, y: 0}
-      - {x: 0.433, y: 0.25}
-      - {x: 0.25, y: 0.433}
-      - {x: 0, y: 0.5}
-      - {x: -0.25, y: 0.433}
-  m_UseDelaunayMesh: 1
---- !u!1 &7263290636431386678
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5250844680967129264}
-  - component: {fileID: 5522208351781989062}
-  m_Layer: 0
-  m_Name: Trigger0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5250844680967129264
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7263290636431386678}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8206056468185624472}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &5522208351781989062
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7263290636431386678}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.25
->>>>>>> Stashed changes
 --- !u!1 &8199932406672170586
 GameObject:
   m_ObjectHideFlags: 0

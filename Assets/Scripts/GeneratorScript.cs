@@ -3,21 +3,23 @@ using UnityEngine;
 public class GeneratorScript : MonoBehaviour
 {
 	[SerializeField] Vector2 _OutputPos;
-
+	[SerializeField] float _OutputCooldown;
 	//References
-	ProductManager productManager;
+	ProductManager _ProductManager;
+	float _LastOutputTime;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        productManager = GameObject.FindWithTag("ProductManager").GetComponent<ProductManager>();
-    }
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	void Start()
+	{
+		_ProductManager = GameObject.FindWithTag("ProductManager").GetComponent<ProductManager>();
+		GenerateProduct("square(triangle(square,0),0,square(0,triangle(square,0),triangle),semicircle)");
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
 
 
 	public void Generate()
@@ -27,10 +29,13 @@ public class GeneratorScript : MonoBehaviour
 
 	void GenerateProduct(string blueprint)
 	{
-		GameObject productHolder = Instantiate(productManager.productHolderPrefab, transform.position + (Vector3)_OutputPos, transform.rotation);
+		if (_LastOutputTime + _OutputCooldown > Time.time)
+			return;
+		GameObject productHolder = Instantiate(_ProductManager.productHolderPrefab, transform.position + (Vector3)_OutputPos, transform.rotation);
 		string topComponentType = blueprint.Substring(0, blueprint.IndexOf('('));
-		GameObject topComponent = Instantiate(productManager.GetPrefab(topComponentType), productHolder.transform);
+		GameObject topComponent = Instantiate(_ProductManager.GetPrefab(topComponentType), productHolder.transform);
 		topComponent.GetComponent<ProductComponent>().Initialize(topComponentType);
 		topComponent.GetComponent<ProductComponent>().PrintBlueprint(blueprint.Substring(blueprint.IndexOf('(') + 1, blueprint.Length - (blueprint.IndexOf('(') + 1) - 1));
+		_LastOutputTime = Time.time;
 	}
 }
